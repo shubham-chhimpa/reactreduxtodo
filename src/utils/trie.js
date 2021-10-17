@@ -4,6 +4,7 @@
 class TrieNode {
   /**
    * Create a TrieNode.
+   * This Trie supports only lowercase english letters
    */
   constructor() {
     this.children = new Array(26);
@@ -72,18 +73,18 @@ class Trie {
       }
     }
 
-    this.searchRecursive(curr, suggestions, word);
+    this._searchRecursive(curr, suggestions, word);
     return suggestions;
   }
 
 
   /**
-   * Recursive healper function for search function.
+   * Recursive helper function for search function.
    * @param {TrieNode} curr - Trie node to be processed
    * @param {Array} suggestions - Array of all the matching keywords
    * @param {string} word - The prefix for matching.
    */
-  searchRecursive(curr, suggestions, word) {
+  _searchRecursive(curr, suggestions, word) {
     if (curr === null) {
       return;
     }
@@ -95,7 +96,7 @@ class Trie {
     let children = curr.children;
 
     for (let i = 0; i < children.length; i++) {
-      this.searchRecursive(
+      this._searchRecursive(
         children[i],
         suggestions,
         word + String.fromCharCode(i + parseInt("a".charCodeAt(0)))
